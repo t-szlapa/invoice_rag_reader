@@ -13,6 +13,7 @@ models/
 *.bin
 *.ckpt
 CLAUDE.md
+.claude/
 
 # Srodowisko
 .env
