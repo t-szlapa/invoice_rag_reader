@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p /Users/tomekszlapa/Documents/podyplomowe/wdrazanie_ai/app/routers /Users/tomekszlapa/Documents/podyplomowe/wdrazanie_ai/app/services /Users/tomekszlapa/Documents/podyplomowe/wdrazanie_ai/app/schemas /Users/tomekszlapa/Documents/podyplomowe/wdrazanie_ai/app/models /Users/tomekszlapa/Documents/podyplomowe/wdrazanie_ai/app/db /Users/tomekszlapa/Documents/podyplomowe/wdrazanie_ai/tests)",
+      "Bash(touch /Users/tomekszlapa/Documents/podyplomowe/wdrazanie_ai/app/__init__.py /Users/tomekszlapa/Documents/podyplomowe/wdrazanie_ai/app/routers/__init__.py /Users/tomekszlapa/Documents/podyplomowe/wdrazanie_ai/app/services/__init__.py /Users/tomekszlapa/Documents/podyplomowe/wdrazanie_ai/app/schemas/__init__.py /Users/tomekszlapa/Documents/podyplomowe/wdrazanie_ai/app/models/__init__.py /Users/tomekszlapa/Documents/podyplomowe/wdrazanie_ai/app/db/__init__.py /Users/tomekszlapa/Documents/podyplomowe/wdrazanie_ai/tests/__init__.py)",
+      "Bash(cp /Users/tomekszlapa/Documents/podyplomowe/wdrazanie_ai/main.py /Users/tomekszlapa/Documents/podyplomowe/wdrazanie_ai/app/main.py)",
+      "Bash(cp /Users/tomekszlapa/Documents/podyplomowe/wdrazanie_ai/config.py /Users/tomekszlapa/Documents/podyplomowe/wdrazanie_ai/app/config.py)",
+      "Bash(cp /Users/tomekszlapa/Documents/podyplomowe/wdrazanie_ai/device.py /Users/tomekszlapa/Documents/podyplomowe/wdrazanie_ai/app/services/device.py)",
+      "Bash(cp /Users/tomekszlapa/Documents/podyplomowe/wdrazanie_ai/health.py /Users/tomekszlapa/Documents/podyplomowe/wdrazanie_ai/app/routers/health.py)",
+      "Bash(cp /Users/tomekszlapa/Documents/podyplomowe/wdrazanie_ai/test_health.py /Users/tomekszlapa/Documents/podyplomowe/wdrazanie_ai/tests/test_health.py)"
+    ]
+  }
+}

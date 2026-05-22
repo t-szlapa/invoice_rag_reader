@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+
+# Dane aplikacji (SQLite, ChromaDB, uploady)
+data/
+
+# Modele ML (duze pliki, pobierane automatycznie)
+models/
+*.safetensors
+*.bin
+*.ckpt
+CLAUDE.md
+
+# Srodowisko
+.env
+.env.*
+
+# VSCode
+.vscode/
+
+# macOS
+.DS_Store
+
+# Pytest
+.pytest_cache/
+.coverage
+
+# uv
+.uv/
+
+# Tymczasowe outputy
+mnt/

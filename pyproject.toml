@@ -1,0 +1,35 @@
+[project]
+name = "ocr-rag-api"
+version = "0.1.0"
+description = "OCR/VLM RAG API: odczyt dokumentow (Donut) i wyszukiwanie informacji (RAG)"
+readme = "README.md"
+requires-python = ">=3.11"
+
+dependencies = [
+    # --- API ---
+    "fastapi>=0.115.0",
+    "uvicorn[standard]>=0.30.0",
+    "pydantic>=2.9.0",
+    "pydantic-settings>=2.5.0",
+    "python-multipart>=0.0.9",   # obsluga uploadu plikow (multipart/form-data)
+    # --- OCR / Donut ---
+    "torch>=2.2.0",
+    "transformers>=4.44.0",
+    "pillow>=10.4.0",            # obrobka obrazow
+    "sentencepiece>=0.2.0",     # tokenizer Donut
+    "protobuf>=4.25.0",
+    # --- RAG ---
+    "sentence-transformers>=3.0.0",  # lokalne embeddingi
+    "chromadb>=0.5.0",               # baza wektorowa z trwaloscia na dysku
+    "openai>=1.40.0",                # generowanie odpowiedzi w /rag/answer
+]
+
+[dependency-groups]
+dev = [
+    "httpx>=0.27.0",   # test client dla FastAPI
+    "pytest>=8.3.0",
+]
+
+[tool.uv]
+# pakiety wymagajace duzych kol (torch) - uv radzi sobie z tym domyslnie
+package = false
