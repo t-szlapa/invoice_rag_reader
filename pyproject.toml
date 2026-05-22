@@ -22,6 +22,7 @@ dependencies = [
     "sentence-transformers>=3.0.0",  # lokalne embeddingi
     "chromadb>=0.5.0",               # baza wektorowa z trwaloscia na dysku
     "openai>=1.40.0",                # generowanie odpowiedzi w /rag/answer
+    "datasets>=4.8.5",
 ]
 
 [dependency-groups]

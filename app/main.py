@@ -1,9 +1,4 @@
-"""
-Punkt wejscia aplikacji FastAPI.
-
-Etap 0: szkielet + /health.
-Kolejne etapy dolacza routery dla dokumentow i RAG.
-"""
+"""Punkt wejscia aplikacji FastAPI."""
 from __future__ import annotations
 
 from contextlib import asynccontextmanager
@@ -11,15 +6,14 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 
 from app.config import settings
-from app.routers import health
+from app.db.database import init_db
+from app.routers import documents, health
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Start: upewnij sie, ze katalogi danych istnieja.
-    settings.ensure_dirs()
+    init_db()
     yield
-    # Shutdown: (na razie nic do sprzatania)
 
 
 app = FastAPI(
@@ -29,6 +23,7 @@ app = FastAPI(
 )
 
 app.include_router(health.router)
+app.include_router(documents.router)
 
 
 @app.get("/", include_in_schema=False)
