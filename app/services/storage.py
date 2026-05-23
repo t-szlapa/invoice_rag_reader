@@ -1,4 +1,4 @@
-"""Zapis plikow na dysk i operacje na rekordach dokumentow w SQLite."""
+"""File storage and SQLite document record operations."""
 from __future__ import annotations
 
 import uuid
@@ -13,7 +13,7 @@ from app.models.document import Document
 
 
 def save_upload(file: UploadFile) -> Document:
-    """Zapisuje plik na dysk i wstawia rekord do SQLite ze statusem 'queued'."""
+    """Save uploaded file to disk and insert a SQLite record with status 'queued'."""
     suffix = Path(file.filename).suffix.lower()
     document_id = str(uuid.uuid4())
     file_path = settings.uploads_dir / f"{document_id}{suffix}"
@@ -30,6 +30,7 @@ def save_upload(file: UploadFile) -> Document:
             (document_id, file.filename, str(file_path), created_at),
         )
         conn.commit()
+        print(f"Saved in DB: {document_id} - {file.filename}")
 
     return Document(
         id=document_id,

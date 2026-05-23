@@ -1,4 +1,4 @@
-"""Inicjalizacja i dostep do bazy SQLite."""
+"""SQLite database initialization and access."""
 from __future__ import annotations
 
 import sqlite3
@@ -14,7 +14,7 @@ def get_connection() -> sqlite3.Connection:
 
 
 def init_db() -> None:
-    """Tworzy tabele jezeli nie istnieja. Wywolywane raz przy starcie aplikacji."""
+    """Create tables if they do not exist. Called once on application startup."""
     settings.ensure_dirs()
     with get_connection() as conn:
         conn.execute("""
@@ -26,4 +26,20 @@ def init_db() -> None:
                 created_at  TEXT NOT NULL
             )
         """)
+        conn.commit()
+
+
+def get_document(document_id: str) -> sqlite3.Row | None:
+    with get_connection() as conn:
+        return conn.execute(
+            "SELECT * FROM documents WHERE id = ?", (document_id,)
+        ).fetchone()
+
+
+def update_status(document_id: str, status: str) -> None:
+    with get_connection() as conn:
+        conn.execute(
+            "UPDATE documents SET status = ? WHERE id = ?",
+            (status, document_id),
+        )
         conn.commit()

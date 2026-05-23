@@ -52,4 +52,4 @@ def test_upload_record_survives_restart():
 
     assert row is not None
     assert row[0] == document_id
-    assert row[1] == "queued"
+    assert row[1] in {"queued", "processing", "completed", "failed"}

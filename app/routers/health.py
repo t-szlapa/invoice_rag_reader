@@ -1,4 +1,4 @@
-"""Router sprawdzajacy stan aplikacji."""
+"""Health check router."""
 from __future__ import annotations
 
 from fastapi import APIRouter
@@ -12,7 +12,7 @@ router = APIRouter(tags=["health"])
 
 @router.get("/health", response_model=HealthResponse)
 def health() -> HealthResponse:
-    """Zwraca podstawowe informacje o stanie aplikacji."""
+    """Return basic application health information."""
     return HealthResponse(
         status="ok",
         app_name=settings.app_name,

@@ -1,4 +1,4 @@
-"""Schematy Pydantic dla endpointu /health."""
+"""Pydantic schemas for the /health endpoint."""
 from __future__ import annotations
 
 from pydantic import BaseModel

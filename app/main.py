@@ -1,4 +1,4 @@
-"""Punkt wejscia aplikacji FastAPI."""
+"""FastAPI application entry point."""
 from __future__ import annotations
 
 from contextlib import asynccontextmanager
@@ -28,5 +28,5 @@ app.include_router(documents.router)
 
 @app.get("/", include_in_schema=False)
 def root() -> dict[str, str]:
-    """Krotka informacja powitalna z odnosnikiem do dokumentacji."""
+    """Brief welcome message with a link to the API docs."""
     return {"message": settings.app_name, "docs": "/docs"}
