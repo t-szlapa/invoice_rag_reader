@@ -1,16 +1,16 @@
-"""OCR service — mock implementation, to be replaced with real Donut in Stage 3."""
+"""OCR service — runs Donut inference and persists the result."""
 from __future__ import annotations
 
-import time
+from app.db.database import save_ocr_result, update_status
+from app.services.donut import run_inference
 
-from app.db.database import update_status
 
-
-def run_ocr(document_id: str) -> None:
-    """Simulate OCR processing: queued -> processing -> completed."""
+def run_ocr(document_id: str, file_path: str) -> None:
+    """Process a document image with Donut: queued -> processing -> completed/failed."""
     try:
         update_status(document_id, "processing")
-        time.sleep(2)
-        update_status(document_id, "completed")
-    except Exception:
+        ocr_text, ocr_json = run_inference(file_path)
+        save_ocr_result(document_id, ocr_text, ocr_json)
+    except Exception as exc:
         update_status(document_id, "failed")
+        print(f"[OCR] Failed for {document_id}: {exc}")

@@ -25,7 +25,7 @@ def upload_document(file: UploadFile, background_tasks: BackgroundTasks) -> Docu
         )
 
     doc = save_upload(file)
-    background_tasks.add_task(run_ocr, doc.id)
+    background_tasks.add_task(run_ocr, doc.id, doc.file_path)
 
     return DocumentUploadResponse(
         document_id=doc.id,
@@ -46,4 +46,6 @@ def get_document_status(document_id: str) -> DocumentStatusResponse:
         filename=row["filename"],
         status=row["status"],
         created_at=row["created_at"],
+        ocr_text=row["ocr_text"],
+        ocr_json=row["ocr_json"],
     )

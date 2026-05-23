@@ -15,3 +15,5 @@ class DocumentStatusResponse(BaseModel):
     filename: str
     status: str
     created_at: str
+    ocr_text: str | None = None
+    ocr_json: str | None = None

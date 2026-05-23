@@ -42,6 +42,9 @@ class Settings(BaseSettings):
     openai_api_key: str | None = None
     openai_model: str = "gpt-4o-mini"
 
+    # --- Hugging Face ---
+    hf_token: str | None = None
+
     # --- Upload ---
     allowed_extensions: set[str] = {".jpg", ".jpeg", ".png"}
     max_upload_mb: int = 20

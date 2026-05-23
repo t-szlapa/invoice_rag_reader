@@ -8,11 +8,13 @@ from fastapi import FastAPI
 from app.config import settings
 from app.db.database import init_db
 from app.routers import documents, health
+from app.services.donut import load_model
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     init_db()
+    load_model()
     yield
 
 

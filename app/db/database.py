@@ -26,6 +26,21 @@ def init_db() -> None:
                 created_at  TEXT NOT NULL
             )
         """)
+        # add OCR result columns to existing databases (idempotent)
+        for column, definition in [("ocr_text", "TEXT"), ("ocr_json", "TEXT")]:
+            try:
+                conn.execute(f"ALTER TABLE documents ADD COLUMN {column} {definition}")
+            except sqlite3.OperationalError:
+                pass  # column already exists
+        conn.commit()
+
+
+def save_ocr_result(document_id: str, ocr_text: str, ocr_json: str) -> None:
+    with get_connection() as conn:
+        conn.execute(
+            "UPDATE documents SET status = 'completed', ocr_text = ?, ocr_json = ? WHERE id = ?",
+            (ocr_text, ocr_json, document_id),
+        )
         conn.commit()
 
 
