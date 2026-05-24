@@ -19,3 +19,14 @@ class SearchResult(BaseModel):
 class SearchResponse(BaseModel):
     query: str
     results: list[SearchResult]
+
+
+class AnswerRequest(BaseModel):
+    query: str
+    n_results: int = Field(default=5, ge=1, le=20)
+
+
+class AnswerResponse(BaseModel):
+    query: str
+    answer: str
+    sources: list[SearchResult]
