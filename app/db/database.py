@@ -26,8 +26,12 @@ def init_db() -> None:
                 created_at  TEXT NOT NULL
             )
         """)
-        # add OCR result columns to existing databases (idempotent)
-        for column, definition in [("ocr_text", "TEXT"), ("ocr_json", "TEXT")]:
+        # add columns to existing databases (idempotent)
+        for column, definition in [
+            ("ocr_text", "TEXT"),
+            ("ocr_json", "TEXT"),
+            ("indexed_at", "TEXT"),
+        ]:
             try:
                 conn.execute(f"ALTER TABLE documents ADD COLUMN {column} {definition}")
             except sqlite3.OperationalError:
@@ -49,6 +53,15 @@ def get_document(document_id: str) -> sqlite3.Row | None:
         return conn.execute(
             "SELECT * FROM documents WHERE id = ?", (document_id,)
         ).fetchone()
+
+
+def save_indexed_at(document_id: str, indexed_at: str) -> None:
+    with get_connection() as conn:
+        conn.execute(
+            "UPDATE documents SET indexed_at = ? WHERE id = ?",
+            (indexed_at, document_id),
+        )
+        conn.commit()
 
 
 def update_status(document_id: str, status: str) -> None:

@@ -7,6 +7,7 @@ from fastapi import FastAPI
 
 from app.config import settings
 from app.db.database import init_db
+from app.db.vector_store import init_chroma
 from app.routers import documents, health
 from app.services.donut import load_model
 
@@ -14,6 +15,7 @@ from app.services.donut import load_model
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     init_db()
+    init_chroma()
     load_model()
     yield
 

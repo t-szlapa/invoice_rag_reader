@@ -17,3 +17,10 @@ class DocumentStatusResponse(BaseModel):
     created_at: str
     ocr_text: str | None = None
     ocr_json: str | None = None
+    indexed_at: str | None = None
+
+
+class IndexResponse(BaseModel):
+    document_id: str
+    chunks_indexed: int
+    indexed_at: str
