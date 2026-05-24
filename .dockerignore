@@ -1,0 +1,26 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.python-version
+
+# Data — mounted as Docker volume at runtime
+data/
+
+# Tests and dev tools
+tests/
+samples/
+setup/
+
+# Secrets and local config
+.env
+
+# Git
+.git/
+.gitignore
+
+# Docs
+README.md
+CLAUDE.md

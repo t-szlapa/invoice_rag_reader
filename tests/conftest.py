@@ -23,6 +23,7 @@ def isolated_chroma(tmp_path, monkeypatch):
     monkeypatch.setattr(config_module.settings, "chroma_dir", tmp_path / "chroma")
     monkeypatch.setattr(config_module.settings, "sqlite_path", tmp_path / "app.db")
     monkeypatch.setattr(config_module.settings, "uploads_dir", tmp_path / "uploads")
+    monkeypatch.setattr(config_module.settings, "openai_api_key", None)
     config_module.settings.ensure_dirs()
 
     from app.db.database import init_db
