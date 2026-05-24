@@ -8,7 +8,7 @@ from fastapi import FastAPI
 from app.config import settings
 from app.db.database import init_db
 from app.db.vector_store import init_chroma
-from app.routers import documents, health
+from app.routers import documents, health, rag
 from app.services.donut import load_model
 
 
@@ -28,6 +28,7 @@ app = FastAPI(
 
 app.include_router(health.router)
 app.include_router(documents.router)
+app.include_router(rag.router)
 
 
 @app.get("/", include_in_schema=False)
