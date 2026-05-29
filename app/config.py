@@ -30,8 +30,8 @@ class Settings(BaseSettings):
     sqlite_path: Path = Path("data/app.db")
 
     # --- Donut inference device ---
-    # "auto" -> detect automatically (MPS on Mac, otherwise CPU).
-    # Can be forced to "cpu" or "mps" via the DEVICE environment variable.
+    # "auto" -> detect automatically (MPS on Mac, otherwise CPU/GPU).
+    # Can be forced to "cpu"/"gpu" or "mps" via the DEVICE environment variable.
     device: str = "auto"
 
     # --- Models ---

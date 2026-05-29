@@ -1,46 +1,61 @@
 """
-Pobiera przykladowy obraz faktury z datasetu katanaml-org/invoices-donut-data-v1.
+Downloads sample invoice images from the katanaml-org/invoices-donut-data-v1 dataset.
 
-Uzycie:
+Usage:
     uv run setup/download_sample.py
 
-Wymaga pakietu datasets:
+Requires the datasets package:
     uv add datasets
 
-Dokumenty 0-499 byly uzyte do treningu modelu Donut - skrypt pobiera od indeksu 500
-(zbior testowy), zeby zapewnic uczciwa weryfikacje OCR.
+The dataset has 3 splits: train (425), validation (50), test (26).
+This script downloads from the test split to ensure honest OCR verification
+(the model was trained on the train split only).
 """
 from __future__ import annotations
 
 import sys
 from pathlib import Path
+import argparse
 
 OUTPUT_DIR = Path("samples")
-START_INDEX = 500
+SPLIT = "test"
 
+parser = argparse.ArgumentParser()
+
+parser.add_argument(
+    "--samples",
+    type=int,
+    default=3,
+    help="Number of samples to download (max 26 for test split)"
+)
 
 def main() -> None:
+    args = parser.parse_args()
+    samples = args.samples
     try:
         from datasets import load_dataset
     except ImportError:
-        print("Brak pakietu 'datasets'. Zainstaluj: uv add datasets")
+        print("Package 'datasets' not found. Install it with: uv add datasets")
         sys.exit(1)
 
-    print("Pobieranie datasetu (moze chwile potrwac przy pierwszym uruchomieniu)...")
-    ds = load_dataset("katanaml-org/invoices-donut-data-v1", split="test")
+    print("Downloading dataset (may take a moment on first run)...")
+    ds = load_dataset("katanaml-org/invoices-donut-data-v1", split=SPLIT)
+
+    if samples > len(ds):
+        print(f"Requested {samples} samples but split '{SPLIT}' has only {len(ds)}. Capping.")
+        samples = len(ds)
 
     OUTPUT_DIR.mkdir(exist_ok=True)
 
-    for i in range(3):
-        idx = START_INDEX + i
+    for i in range(samples):
         image = ds[i]["image"]
-        out_path = OUTPUT_DIR / f"faktura_{idx}.jpg"
+        out_path = OUTPUT_DIR / f"invoice_{i + 1:03d}.jpg"
         image.save(out_path)
-        print(f"Zapisano: {out_path}")
+        print(f"Saved: {out_path}")
 
-    print(f"\nGotowe. Pliki sa w katalogu '{OUTPUT_DIR}/'.")
-    print("Przykladowe uzycie:")
-    print(f"  curl -X POST http://127.0.0.1:8000/documents/upload -F 'file=@{OUTPUT_DIR}/faktura_{START_INDEX}.jpg'")
+    print(f"\nDone. Files are in '{OUTPUT_DIR}/'.")
+    print("Example usage:")
+    print(f"  curl -X POST http://127.0.0.1:8000/documents/upload -F 'file=@{OUTPUT_DIR}/invoice_001.jpg'")
 
 
 if __name__ == "__main__":
