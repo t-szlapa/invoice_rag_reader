@@ -8,7 +8,6 @@ __pycache__/
 data/
 
 # Modele ML (duze pliki, pobierane automatycznie)
-models/
 *.safetensors
 *.bin
 *.ckpt

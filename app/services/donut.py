@@ -63,7 +63,6 @@ def run_inference(image_path: str) -> tuple[str, str]:
             pixel_values,
             decoder_input_ids=decoder_input_ids,
             max_length=_model.decoder.config.max_position_embeddings,
-            early_stopping=True,
             pad_token_id=_processor.tokenizer.pad_token_id,
             eos_token_id=_processor.tokenizer.eos_token_id,
             use_cache=True,

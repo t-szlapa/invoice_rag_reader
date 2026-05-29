@@ -1,0 +1,231 @@
+{
+  "info": {
+    "_postman_id": "43d29e6b-4ee5-4729-bfba-4ff14920d1cc",
+    "name": "SGGW",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "3683804",
+    "_collection_link": "https://go.postman.co/collection/3683804-43d29e6b-4ee5-4729-bfba-4ff14920d1cc?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "1_Health",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8000/health",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "health"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "2_upload_file",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "type": "file",
+              "key": "file",
+              "value": null
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/documents/upload",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "documents",
+            "upload"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "3_get_doc_info",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8000/documents/a94adeb7-7d21-4e86-955a-c819e908e40e",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "documents",
+            "a94adeb7-7d21-4e86-955a-c819e908e40e"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "4_start_doc_indexing",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/documents/upload",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "documents",
+            "upload"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "5_rag_search",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"query\": \"faktura\",\n    \"n_results\": 3\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/rag/search",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "rag",
+            "search"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "6_answer",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"query\": \"\",\n    \"n_results\": 3\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/rag/search",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "rag",
+            "search"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "doc_id_2",
+      "value": ""
+    },
+    {
+      "key": "doc_id_3",
+      "value": ""
+    },
+    {
+      "key": "doc_id_1",
+      "value": ""
+    },
+    {
+      "key": "doc_id_4",
+      "value": ""
+    },
+    {
+      "key": "doc_id_5",
+      "value": ""
+    },
+    {
+      "key": "doc_id_6",
+      "value": "",
+      "type": "default"
+    }
+  ]
+}

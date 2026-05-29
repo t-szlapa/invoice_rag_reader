@@ -35,7 +35,7 @@ Pipeline: `image → Donut (OCR/VLM) → text/JSON → embedding → vector stor
 uv sync
 
 # 2. Configure environment
-cp .env.example .env   # fill in your tokens
+cp env.example .env   # fill in your tokens
 
 # 3. Start the server (dev mode)
 uv run --env-file .env uvicorn app.main:app --reload
@@ -66,9 +66,6 @@ docker build -t ocr-rag-api .
 
 # or with HF token to make it faster
 HF_TOKEN=hf_... docker build --secret id=hf_token,env=HF_TOKEN -t ocr-rag-api .
-
-# to build image with CUDA support
-docker build --build-arg CUDA=true -t ocr-rag-api-cuda .
 ```
 
 > The first build may take longer than usual — it downloads the Donut model (~810 MB) and
