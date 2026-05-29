@@ -92,7 +92,9 @@ curl http://localhost:8000/health
 
 ---
 
-## API usage examples
+## API usage examples, how to test this program?
+
+After running docker locally, you can just follow the below request each at a time. At the last one you'll be able to ask LLM for question about your docs.
 
 ### Upload an invoice
 
@@ -131,6 +133,10 @@ curl -s -X POST http://localhost:8000/rag/answer \
   -H "Content-Type: application/json" \
   -d '{"query": "Who is the vendor?"}' | jq .
 ```
+
+## Postman
+
+For simplicity there's also postman collection attached in root directory `postman_collection.json`
 
 ---
 
